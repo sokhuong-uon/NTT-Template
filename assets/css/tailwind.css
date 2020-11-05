@@ -1,0 +1,68 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.btn:focus{
+
+	outline: 0;
+
+}
+
+.flexcontainer{
+
+	@apply flex;
+	@apply items-center;
+	@apply justify-center;
+
+}
+
+.resizable{
+
+	resize: horizontal;
+	@apply overflow-auto;
+
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hidescrollbar {
+
+	-ms-overflow-style: none;
+	/* IE and Edge */
+	scrollbar-width: none;
+	/* Firefox */
+
+}
+
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	.hidescrollbar::-webkit-scrollbar {
+
+		display: none;
+
+	}
+
+/* customize scrollbar */
+::-webkit-scrollbar {
+
+	width: 6px;
+	height: 6px;
+
+}
+
+	::-webkit-scrollbar-track {
+
+		background: transparent;
+
+	}
+
+	::-webkit-scrollbar-thumb {
+
+		background: rgb(57, 36, 36);
+		border-radius: 10px;
+
+	}
+
+		::-webkit-scrollbar-thumb:hover {
+
+			background: #555;
+
+		}
