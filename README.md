@@ -17,7 +17,7 @@ Projects.
 
 # Comes with Tailwind CSS customization
 
-- 
+  - ## Customized
 	<details>
 	<summary>Spacing</summary>
 
