@@ -24,10 +24,9 @@ export default {
 	// Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
 	plugins: [
 
-		{src: '@/plugins/vue-tippy', ssr: false},
-		{src: '@/plugins/v-click-outside', ssr: false},
-		{src: "@/plugins/prism", ssr: false },
-		{src: "@/plugins/gsap", ssr: false },
+		{src: '@/plugins/vue-tippy', ssr: true},
+		{src: '@/plugins/v-click-outside', ssr: true},
+		{src: "@/plugins/prism", ssr: true },
 
 	],
 
@@ -39,6 +38,7 @@ export default {
 
 		// https://go.nuxtjs.dev/tailwindcss
 		'@nuxtjs/tailwindcss',
+		'nuxt-gsap-module'
 
 	],
 
@@ -57,6 +57,77 @@ export default {
 
 	// Build Configuration (https://go.nuxtjs.dev/config-build)
 	build: {
+	},
+
+	// GSAP
+	gsap: {
+
+		extraPlugins: {
+
+			cssRule: false,
+			draggable: false,
+			easel: false,
+			motionPath: false,
+			pixi: false,
+			text: true,
+			scrollTo: false,
+			scrollTrigger: true
+
+		},
+
+		extraEases: {
+
+			expoScaleEase: false,
+			roughEase: false,
+			slowMo: false
+
+		}
+
+	},
+
+	// Global page transition
+	pageTransition: {
+
+		name: 'page',
+		mode: 'out-in',
+		css: false,
+
+		beforeEnter(el) {
+
+			this.$gsap.set(el, {
+
+				opacity: 0
+
+			});
+
+		},
+
+		enter(el, done) {
+
+			this.$gsap.to(el, {
+
+				opacity: 1,
+				duration: 0.3,
+				ease: 'power2.inOut',
+				onComplete: done
+
+			});
+
+		},
+
+		leave(el, done) {
+
+			this.$gsap.to(el, {
+
+				opacity: 0,
+				duration: 0.3,
+				ease: 'power2.inOut',
+				onComplete: done
+
+			});
+
+		}
+
 	}
 
 }
