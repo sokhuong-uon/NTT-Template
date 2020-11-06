@@ -166,7 +166,7 @@ export default {
 
 		cleanMaterial(material) {
 
-			console.log('dispose material!');
+			// console.log('dispose material!');
 			material.dispose();
 
 			// dispose textures
@@ -214,14 +214,14 @@ export default {
 
 	beforeDestroy() {
 
-		console.log('Before destroy');
+		// console.log('Before destroy');
 		this.renderer.dispose();
 
 		this.scene.traverse( (object) => {
 
 			if (!object.isMesh) return;
 
-			console.log('dispose geometry!');
+			// console.log('dispose geometry!');
 			object.geometry.dispose();
 
 			if (object.material.isMaterial) {
