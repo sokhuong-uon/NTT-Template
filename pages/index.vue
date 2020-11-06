@@ -110,6 +110,7 @@ export default {
 
 				let tl = gsap.timeline({repeat: 1, yoyo: true});
 				tl.to('#text', {duration: 1, text: word});
+				
 				mainTimeline.add(tl);
 
 			});
