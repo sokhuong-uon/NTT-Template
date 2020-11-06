@@ -164,6 +164,26 @@ export default {
 
 		},
 
+		cleanMaterial(material) {
+
+			console.log('dispose material!');
+			material.dispose();
+
+			// dispose textures
+			for (const key of Object.keys(material)) {
+
+				const value = material[key];
+				if (value && typeof value === 'object' && 'minFilter' in value) {
+
+					console.log('dispose texture!');
+					value.dispose();
+
+				}
+
+			}
+
+		}
+
 	},
 
 	mounted() {
@@ -189,6 +209,32 @@ export default {
 			ease: "back.out(3)"
 
 		}, 0);
+
+	},
+
+	beforeDestroy() {
+
+		console.log('Before destroy');
+		this.renderer.dispose();
+
+		this.scene.traverse( (object) => {
+
+			if (!object.isMesh) return;
+
+			console.log('dispose geometry!');
+			object.geometry.dispose();
+
+			if (object.material.isMaterial) {
+
+				this.cleanMaterial(object.material);
+
+			} else {
+
+				for (const material of object.material) this.cleanMaterial(material);
+
+			}
+
+		});
 
 	}
 
