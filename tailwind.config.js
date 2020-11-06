@@ -15,7 +15,7 @@ module.exports = {
 			'2px': '2px',
 			'1': '0.25rem',
 			'2': '0.5rem',
-			'2': '0.75rem',
+			'3': '0.75rem',
 			'4': '1rem',
 			'5': '1.25rem',
 			'6': '1.5rem',
@@ -257,23 +257,31 @@ module.exports = {
 		},
 
 		extend: {
-			
+
 		},
 
 	},
+
 	variants: {
-		maxHeight: ['responsive', 'hover', 'focus'],
+
 	},
+
 	plugins: [],
+
 	purge: {
+
 		// Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
 		enabled: process.env.NODE_ENV === 'production',
 		content: [
-		'components/**/*.vue',
-		'layouts/**/*.vue',
-		'pages/**/*.vue',
-		'plugins/**/*.js',
-		'nuxt.config.js'
+
+			'components/**/*.vue',
+			'layouts/**/*.vue',
+			'pages/**/*.vue',
+			'plugins/**/*.js',
+			'nuxt.config.js'
+
 		]
+
 	}
+	
 }
