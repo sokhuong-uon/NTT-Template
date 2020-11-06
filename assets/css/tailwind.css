@@ -43,26 +43,26 @@
 /* customize scrollbar */
 ::-webkit-scrollbar {
 
-	width: 6px;
-	height: 6px;
+	width: 10px;
+	height: 10px;
 
 }
 
 	::-webkit-scrollbar-track {
 
-		background: transparent;
+		background: rgba(86, 182, 214, 0.347);
 
 	}
 
 	::-webkit-scrollbar-thumb {
 
-		background: rgb(57, 36, 36);
+		background: rgba(57, 36, 36, 0.925);
 		border-radius: 10px;
 
 	}
 
 		::-webkit-scrollbar-thumb:hover {
 
-			background: #555;
+			background: rgb(214, 86, 144);
 
 		}
