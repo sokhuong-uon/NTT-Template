@@ -3,26 +3,35 @@
 
 	<div class="w-full h-full overflow-y-auto flex flex-col">
 
-		<div class="w-full h-18 flex-shrink-0 bg-gray-900 flexcontainer">
-			<div class="w-96 text-3xl text-gray-400 font-semibold flex">
-				<div>NTT-Template</div>
+		<div class="w-full h-18 px-2 flex-shrink-0 bg-gray-900 flexcontainer">
+
+			<div class="relative w-auto min-w-64 flex-shrink-0 text-xl sm:text-2xl md:text-3xl text-gray-400 font-semibold flex">
+				<div id="ntt-text"></div>
 				<div class="ml-2 text-pink-700">
 					<span id="text"></span>
 					<span id="cursor">_</span>
 				</div>
+				<nuxt-link to="/test" class="absolute w-full h-full"></nuxt-link>
 			</div>
+
+			<div class="w-auto ml-auto mr-0 sm:mr-8 h-full flexcontainer select-none">
+
+				<div @click="popingUp = true" class="btn w-22 h-10 mx-1 rounded-full border-2 border-teal-600 bg-teal-600 bg-opacity-30 hover:bg-opacity-80 text-xl cursor-pointer text-gray-400 flexcontainer" content="Three.js" v-tippy="{arrow: true, placement: 'top'}">Three.js</div>
+
+			</div>
+
 		</div>
 
 		<div class="w-full flex-1 bg-gray-800 flex">
 
-			<div class="w-88 h-full bg-indigo-800">
-			</div>
 
-			<div class="w-108 h-auto flex-1 flex flex-col">
+			<!-- Main -->
+			<div class="w-full h-auto flex-1 flex flex-col bg-green-500">
 
-				<div id="scss" class="flex w-full c overflow-auto">
-					<div>
-						<prism language="scss" class="line-numbers flex w-180 h-64">
+				<div class="trigger flex flex-col w-full min-w-18">
+
+					<div v-show="showComponent" v-for="doto of todos" :key="doto" :id="doto" class="w-full h-full">
+						<prism language="scss" class="scss line-numbers flex w-full h-64">
 							.VueToNuxtLogo {
 								display: inline-block;
 								animation: turn 2s linear forwards 1s;
@@ -34,60 +43,7 @@
 							}
 						</prism>
 					</div>
-				</div>
 
-				<div class="flex w-full overflow-auto">
-					<prism language="js" class="line-numbers h-104">
-						/* eslint-disable no-template-curly-in-string */
-						/* eslint-disable no-undef */
-						import 'clipboard' // For the copy to clipboard plugin
-						import Prism from 'prismjs'
-						import Vue from 'vue'
-
-						// Include a theme:
-						import 'prismjs/themes/prism-tomorrow.css'
-
-						// Include language support: (optional)
-						import 'prismjs/components/prism-scss'
-						import 'prismjs/components/prism-markup'
-						import 'prismjs/components/prism-ruby'
-
-						// Include the toolbar plugin: (optional)
-						import 'prismjs/plugins/toolbar/prism-toolbar'
-						import 'prismjs/plugins/toolbar/prism-toolbar.css'
-
-						// Include the autolinker plugin: (optional)
-						import 'prismjs/plugins/autolinker/prism-autolinker'
-						import 'prismjs/plugins/autolinker/prism-autolinker.css'
-
-						// Include the line numbers plugin: (optional)
-						import 'prismjs/plugins/line-numbers/prism-line-numbers'
-						import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
-
-						// Include the line highlight plugin: (optional)
-						import 'prismjs/plugins/line-highlight/prism-line-highlight'
-						import 'prismjs/plugins/line-highlight/prism-line-highlight.css'
-
-						// Include some other plugins: (optional)
-						import 'prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard'
-						import 'prismjs/plugins/highlight-keywords/prism-highlight-keywords'
-						import 'prismjs/plugins/show-language/prism-show-language'
-						import 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace'
-
-						Vue.component("prism", Prism);
-					</prism>
-				</div>
-
-				<div id="html" class="flex w-full overflow-auto">
-					<prism language="html" class="w-180 min-w-1/4 h-128">
-						{{sourcecode}}
-					</prism>
-				</div>
-
-				<div class="w-full h-36 flexcontainer select-none">
-					<div class="btn w-18 h-8 mx-1 bg-teal-600 text-xl cursor-pointer text-gray-400 flexcontainer" content="Left" v-tippy="{arrow: true, placement: 'left'}">Hover</div>
-					<div @click="popingUp = true" class="btn w-18 h-8 mx-1 bg-teal-600 text-xl cursor-pointer text-gray-400 flexcontainer" content="Top" v-tippy="{arrow: true, placement: 'top'}">Click</div>
-					<div class="btn w-18 h-8 mx-1 bg-teal-600 text-xl cursor-pointer text-gray-400 flexcontainer" content="Right" v-tippy="{arrow: true, placement: 'right'}">Hover</div>
 				</div>
 
 			</div>
@@ -109,8 +65,7 @@
 
 <script>
 
-import Prism from '@/plugins/prism';
-import gsap from "gsap";
+import Prism from 'prismjs';
 
 export default {
 
@@ -122,7 +77,11 @@ export default {
 
 			sourcecode: '',
 
-			popingUp: false
+			popingUp: false,
+
+			todos: ['a', 'b', 'c'],
+
+			showComponent: false
 
 		}
 
@@ -131,6 +90,8 @@ export default {
 	methods: {
 
 		initAnimation(){
+
+			const gsap = this.$gsap;
 
 			const words = ['Demo.', 'Showcase.', 'Examples.'];
 
@@ -143,7 +104,7 @@ export default {
 
 			});
 
-			let mainTimeline = gsap.timeline({repeat: -1, delay: 1});
+			let mainTimeline = gsap.timeline({repeat: -1, delay: 1.5});
 
 			words.forEach( (word) => {
 
@@ -152,40 +113,41 @@ export default {
 				mainTimeline.add(tl);
 
 			});
+
+		},
+
+		animateNttText() {
+
+			this.$gsap.to('#ntt-text', {
+
+				duration: 1,
+				text: 'NTT-Template',
+				ease: "power2",
+				delay: 0.5
+
+			});
+
 		}
 
 	},
 
 	mounted () {
 
-		this.sourcecode = `
-						<!DOCTYPE html>
-						<html lang="en">
-						<head>
-							<meta charset="UTF-8">
-							<meta name="viewport" content="width=device-width, initial-scale=1.0">
-							<title>Without line number</title>
-						</head>
-						<body>
-							<div class="relative w-screen h-screen flex items-center justify-center">
+		Prism.highlightAll();
 
-								<h1 class="text-xl text-teal-700">Random</h1>
+		const gsap = this.$gsap;
+		const TextPlugin = this.$TextPlugin;
+		const ScrollTrigger = this.$ScrollTrigger;
 
-								<div class="absolute top-16 right-8 w-full h-12 overflow-auto">
+		gsap.registerPlugin(TextPlugin, ScrollTrigger);
 
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit debitis aliquam nesciunt ratione distinctio placeat quasi nisi enim reiciendis molestias fuga laborum quia, accusamus, aut alias ex suscipit iste dolorem?
+		const tl = gsap.timeline({});
 
-								</div>
+		tl.from('#a', {y: 1500, duration: 1, onStart: () => {this.showComponent = true}})
+		.from('#b', {y: 1500, duration: 1}, '-=0.5')
+		.from('#c', {y: 1500, duration: 1}, '-=0.5')
 
-								<div class="w-88 h-88 bg-gradient-to-tr from-teal-800 via-indigo-800 to-blue-800 md:w-108 md:h-108">
-									<div>hahaha</div>
-								</div>
-
-							</div>
-						</body>
-						</html>
-						`;
-
+		this.animateNttText();
 		this.initAnimation();
 
 	},
