@@ -23,17 +23,10 @@
 
 		<main class="w-full flex-1 bg-gray-800 flex">
 
-
 			<!-- Main -->
 			<div class="w-full h-auto flex-1 flex flex-col bg-green-500">
 
 				<div class="trigger flex flex-col w-full min-w-18">
-
-					<div v-show="showComponent" v-for="doto of todos" :key="doto" :id="doto" class="w-full h-full">
-						<prism language="scss" class="line-numbers flex w-full h-64">
-							{{scssCode}}
-						</prism>
-					</div>
 
 				</div>
 
@@ -42,7 +35,6 @@
 		</main>
 
 	</div>
-
 
 	<!-- Pop Up -->
 	<div v-if="popingUp" class="absolute inset-0 bg-gray-900 bg-opacity-75">
@@ -56,8 +48,6 @@
 
 <script>
 
-import Prism from 'prismjs';
-
 export default {
 
 	name: "Home",
@@ -68,17 +58,6 @@ export default {
 
 			popingUp: false,
 			showComponent: false,
-
-			todos: ['a', 'b', 'c'],
-			scssCode: `.VueToNuxtLogo {
-							display: inline-block;
-							animation: turn 2s linear forwards 1s;
-							transform: rotateX(180deg);
-							position: relative;
-							overflow: hidden;
-							height: 180px;
-							width: 245px;
-						}`
 
 		}
 
@@ -130,8 +109,6 @@ export default {
 	},
 
 	mounted () {
-
-		Prism.highlightAll();
 
 		const gsap = this.$gsap;
 		const TextPlugin = this.$TextPlugin;
