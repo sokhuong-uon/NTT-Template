@@ -10,7 +10,6 @@
 
 import vClickOutside from 'v-click-outside';
 
-import gsap from 'gsap';
 import * as THREE from 'three';
 import {OrbitControls} from '~/node_modules/three/examples/jsm/controls/OrbitControls.js';
 
@@ -93,18 +92,6 @@ export default {
 				this.orbitControl.update();
 			}
 
-
-			// Ambient Light
-			// {
-			// 	const color = 0xaaaaaa;
-			// 	const intensity = 1;
-
-			// 	const ambientLight = new THREE.AmbientLight(color, intensity);
-			// 	ambientLight.name = "Ambient Light";
-
-			// 	this.scene.add(ambientLight);
-			// }
-
 			// Directional Light
 			{
 				const color = 0xaaaaaa;
@@ -118,7 +105,6 @@ export default {
 
 				this.scene.add(light);
 			}
-
 
 			// Cube
 			{
@@ -188,6 +174,8 @@ export default {
 	mounted() {
 
 		this.init();
+
+		const gsap = this.$gsap;
 
 		let tl = gsap.timeline({});
 
