@@ -7,8 +7,6 @@
 Projects.
 
 - Installed and set up plugins and buildModules:
-	[prismjs][prismjs] + 
-	[vue-prism-component][vue-prism-component] + 
 	[v-click-outside][v-click-outside] +
 	[vue-tippy][vue-tippy] +
 	[nuxt-gsap-module][nuxt-gsap-module]
