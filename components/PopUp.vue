@@ -1,7 +1,7 @@
 <template>
 <div v-click-outside="externalClick" class=" w-88 h-100 bg-gray-500">
-	<div id="sceneSpace" class="w-full h-full">
-		<canvas id="scene" class="w-full h-full" content="3D Content" v-tippy="{arrow: true, placement: 'top'}"></canvas>
+	<div id="PopUp" class="w-full h-full">
+		<canvas id="canvas" class="w-full h-full" content="3D Content" v-tippy="{arrow: true, placement: 'top'}"></canvas>
 	</div>
 </div>
 </template>
@@ -27,12 +27,12 @@ export default {
 
 		return {
 
-			sceneSpace: null,
+			PopUp: null,
 			canvas: null,
 
 			renderer: null,
 			perspectiveCamera: null,
-			scene: null,
+			canvas: null,
 
 			cube: null,
 
@@ -48,10 +48,10 @@ export default {
 		init() {
 
 			// Container
-			this.sceneSpace = document.getElementById('sceneSpace');
+			this.PopUp = document.getElementById('PopUp');
 
 			// Canvas
-			this.canvas = document.getElementById('scene');
+			this.canvas = document.getElementById('canvas');
 
 			// WebGL Renderer
 			{
@@ -60,19 +60,19 @@ export default {
 				this.renderer.setClearColor(0x220022);
 
 				this.renderer.setPixelRatio(window.devicePixelRatio);
-				this.renderer.setSize(this.sceneSpace.clientWidth, this.sceneSpace.clientHeight);
+				this.renderer.setSize(this.PopUp.clientWidth, this.PopUp.clientHeight);
 			}
 
 			// Scene
 			{
-				this.scene = new THREE.Scene();
-				this.scene.name  = "Scene";
+				this.canvas = new THREE.Scene();
+				this.canvas.name  = "Scene";
 			}
 
 			// Percpective Camera
 			{
 				let fov = 75;
-				let aspect = this.sceneSpace.clientWidth / this.sceneSpace.clientHeight;
+				let aspect = this.PopUp.clientWidth / this.PopUp.clientHeight;
 				const near = 0.01;
 				const far = 2000;
 
@@ -103,7 +103,7 @@ export default {
 				light.position.set(5, 15, 5);
 				light.lookAt(0,0,0);
 
-				this.scene.add(light);
+				this.canvas.add(light);
 			}
 
 			// Cube
@@ -114,20 +114,20 @@ export default {
 				let mesh = new THREE.Mesh(geometry, material);
 				this.cube = mesh;
 
-				this.scene.add(mesh);
+				this.canvas.add(mesh);
 			}
 
 			// // Axes Helper
 			// {
 			// 	let helper = new THREE.AxesHelper(50);
-			// 	this.scene.add(helper);
+			// 	this.canvas.add(helper);
 			// }
 
 			// // Grid Helper
 			// {
 			// 	let gridHelper = new THREE.GridHelper(500, 500, 0xffffff);
 			// 	gridHelper.position.set(0, 0, 0);
-			// 	this.scene.add(gridHelper);
+			// 	this.canvas.add(gridHelper);
 			// }
 
 			// Animate
@@ -140,7 +140,7 @@ export default {
 			this.cube.rotation.x -= 0.01;
 			this.cube.rotation.z -= 0.01;
 
-			this.renderer.render(this.scene, this.perspectiveCamera);
+			this.renderer.render(this.canvas, this.perspectiveCamera);
 
 		},
 
@@ -149,25 +149,6 @@ export default {
 			this.$emit('externalClick', false);
 
 		},
-
-		cleanMaterial(material) {
-
-			material.dispose();
-
-			for (const key of Object.keys(material)) {
-
-				const value = material[key];
-
-				if (value && typeof value === 'object' && 'minFilter' in value) {
-
-					console.log('dispose texture!');
-					value.dispose();
-
-				}
-
-			}
-
-		}
 
 	},
 
@@ -198,30 +179,6 @@ export default {
 		}, 0);
 
 	},
-
-	beforeDestroy() {
-
-		this.renderer.dispose();
-
-		this.scene.traverse( (object) => {
-
-			if (!object.isMesh) return;
-
-			object.geometry.dispose();
-
-			if (object.material.isMaterial) {
-
-				this.cleanMaterial(object.material);
-
-			} else {
-
-				for (const material of object.material) this.cleanMaterial(material);
-
-			}
-
-		});
-
-	}
 
 }
 
