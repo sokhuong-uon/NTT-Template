@@ -6,11 +6,12 @@
 	[Three.js][Three.js]
 Projects.
 
-- Installed and set up plugins:
+- Installed and set up plugins and buildModules:
 	[prismjs][prismjs] + 
 	[vue-prism-component][vue-prism-component] + 
 	[v-click-outside][v-click-outside] +
-	[vue-tippy][vue-tippy]
+	[vue-tippy][vue-tippy] +
+	[nuxt-gsap-module][nuxt-gsap-module]
 
 - Animation with:
 	[gsap][gsap]
@@ -358,3 +359,4 @@ Projects.
 [vue-tippy]: https://github.com/KABBOUCHI/vue-tippy
 
 [gsap]: https://greensock.com/gsap/
+[nuxt-gsap-module]: https://github.com/ivodolenc/nuxt-gsap-module
