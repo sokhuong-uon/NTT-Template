@@ -110,48 +110,48 @@ export default {
 	},
 
 	// Global page transition
-	// pageTransition: {
+	pageTransition: {
 
-	// 	name: 'page',
-	// 	mode: 'out-in',
-	// 	css: false,
+		name: 'page',
+		mode: 'out-in',
+		css: false,
 
-	// 	beforeEnter(el) {
+		beforeEnter(el) {
 
-	// 		this.$gsap.set(el, {
+			this.$gsap.set(el, {
 
-	// 			opacity: 0
+				opacity: 0
 
-	// 		});
+			});
 
-	// 	},
+		},
 
-	// 	enter(el, done) {
+		enter(el, done) {
 
-	// 		this.$gsap.to(el, {
+			this.$gsap.to(el, {
 
-	// 			opacity: 1,
-	// 			duration: 0.3,
-	// 			ease: 'power2.inOut',
-	// 			onComplete: done
+				opacity: 1,
+				duration: 0.3,
+				ease: 'power2.inOut',
+				onComplete: done
 
-	// 		});
+			});
 
-	// 	},
+		},
 
-	// 	leave(el, done) {
+		leave(el, done) {
 
-	// 		this.$gsap.to(el, {
+			this.$gsap.to(el, {
 
-	// 			opacity: 0,
-	// 			duration: 0.3,
-	// 			ease: 'power2.inOut',
-	// 			onComplete: done
+				opacity: 0,
+				duration: 0.3,
+				ease: 'power2.inOut',
+				onComplete: done
 
-	// 		});
+			});
 
-	// 	}
+		}
 
-	// }
+	}
 
 }
