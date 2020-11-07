@@ -49,7 +49,8 @@ export default {
 
 		// https://go.nuxtjs.dev/tailwindcss
 		'@nuxtjs/tailwindcss',
-		'nuxt-gsap-module'
+		'nuxt-gsap-module',
+		'nuxt-compress'
 
 	],
 
@@ -60,6 +61,18 @@ export default {
 		'@nuxtjs/axios',
 		// https://go.nuxtjs.dev/pwa
 		'@nuxtjs/pwa',
+
+		[
+			"nuxt-compress",
+			{
+				gzip: {
+					cache: true
+				},
+				brotli: {
+					threshold: 10240
+				}
+			}
+		]
 
 	],
 
