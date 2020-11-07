@@ -8,6 +8,10 @@
 
 }
 
+.scene{
+	background-color: '#220022';
+}
+
 .flexcontainer{
 
 	@apply flex;
