@@ -3,16 +3,15 @@
 
 	<div class="w-full h-full overflow-y-auto flex flex-col">
 
-		<div class="w-full h-18 px-2 flex-shrink-0 bg-gray-900 flexcontainer">
+		<header class="w-full h-18 px-2 flex-shrink-0 bg-gray-900 flexcontainer">
 
-			<div class="relative w-auto min-w-64 flex-shrink-0 text-xl sm:text-2xl md:text-3xl text-gray-400 font-semibold flex">
+			<nuxt-link to="/test" class="relative w-auto min-w-64 flex-shrink-0 text-xl sm:text-2xl md:text-3xl text-gray-300 font-semibold flex">
 				<div id="ntt-text"></div>
-				<div class="ml-2 text-pink-700">
+				<div class="ml-2 text-pink-500">
 					<span id="text"></span>
 					<span id="cursor">_</span>
 				</div>
-				<nuxt-link to="/test" class="absolute w-full h-full"></nuxt-link>
-			</div>
+			</nuxt-link>
 
 			<div class="w-auto ml-auto mr-0 sm:mr-8 h-full flexcontainer select-none">
 
@@ -20,9 +19,9 @@
 
 			</div>
 
-		</div>
+		</header>
 
-		<div class="w-full flex-1 bg-gray-800 flex">
+		<main class="w-full flex-1 bg-gray-800 flex">
 
 
 			<!-- Main -->
@@ -31,16 +30,8 @@
 				<div class="trigger flex flex-col w-full min-w-18">
 
 					<div v-show="showComponent" v-for="doto of todos" :key="doto" :id="doto" class="w-full h-full">
-						<prism language="scss" class="scss line-numbers flex w-full h-64">
-							.VueToNuxtLogo {
-								display: inline-block;
-								animation: turn 2s linear forwards 1s;
-								transform: rotateX(180deg);
-								position: relative;
-								overflow: hidden;
-								height: 180px;
-								width: 245px;
-							}
+						<prism language="scss" class="line-numbers flex w-full h-64">
+							{{scssCode}}
 						</prism>
 					</div>
 
@@ -48,7 +39,7 @@
 
 			</div>
 
-		</div>
+		</main>
 
 	</div>
 
@@ -75,13 +66,19 @@ export default {
 
 		return {
 
-			sourcecode: '',
-
 			popingUp: false,
+			showComponent: false,
 
 			todos: ['a', 'b', 'c'],
-
-			showComponent: false
+			scssCode: `.VueToNuxtLogo {
+							display: inline-block;
+							animation: turn 2s linear forwards 1s;
+							transform: rotateX(180deg);
+							position: relative;
+							overflow: hidden;
+							height: 180px;
+							width: 245px;
+						}`
 
 		}
 
@@ -110,7 +107,7 @@ export default {
 
 				let tl = gsap.timeline({repeat: 1, yoyo: true});
 				tl.to('#text', {duration: 1, text: word});
-				
+
 				mainTimeline.add(tl);
 
 			});
@@ -124,7 +121,7 @@ export default {
 				duration: 1,
 				text: 'NTT-Template',
 				ease: "power2",
-				delay: 0.5
+				delay: 0.3
 
 			});
 
@@ -138,15 +135,14 @@ export default {
 
 		const gsap = this.$gsap;
 		const TextPlugin = this.$TextPlugin;
-		const ScrollTrigger = this.$ScrollTrigger;
 
-		gsap.registerPlugin(TextPlugin, ScrollTrigger);
+		gsap.registerPlugin(TextPlugin);
 
 		const tl = gsap.timeline({});
 
 		tl.from('#a', {y: 1500, duration: 1, onStart: () => {this.showComponent = true}})
-		.from('#b', {y: 1500, duration: 1}, '-=0.5')
-		.from('#c', {y: 1500, duration: 1}, '-=0.5')
+		.from('#b', {y: 1500, duration: 1}, '-=0.7')
+		.from('#c', {y: 1500, duration: 1}, '-=0.7')
 
 		this.animateNttText();
 		this.initAnimation();
