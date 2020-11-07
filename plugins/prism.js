@@ -1,8 +1,6 @@
 import Vue from "vue";
 import Prism from "vue-prism-component";
 
-import 'prismjs';
-
 // Include a theme:
 import 'prismjs/themes/prism-tomorrow.css';
 
