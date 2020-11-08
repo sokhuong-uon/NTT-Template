@@ -28,7 +28,7 @@ export default {
 		return {
 
 			PopUp: null,
-			canvas: null,
+			scene: null,
 
 			renderer: null,
 			perspectiveCamera: null,
@@ -65,8 +65,8 @@ export default {
 
 			// Scene
 			{
-				this.canvas = new THREE.Scene();
-				this.canvas.name  = "Scene";
+				this.scene = new THREE.Scene();
+				this.scene.name  = "Scene";
 			}
 
 			// Percpective Camera
@@ -103,7 +103,7 @@ export default {
 				light.position.set(5, 15, 5);
 				light.lookAt(0,0,0);
 
-				this.canvas.add(light);
+				this.scene.add(light);
 			}
 
 			// Cube
@@ -114,20 +114,20 @@ export default {
 				let mesh = new THREE.Mesh(geometry, material);
 				this.cube = mesh;
 
-				this.canvas.add(mesh);
+				this.scene.add(mesh);
 			}
 
 			// // Axes Helper
 			// {
 			// 	let helper = new THREE.AxesHelper(50);
-			// 	this.canvas.add(helper);
+			// 	this.scene.add(helper);
 			// }
 
 			// // Grid Helper
 			// {
 			// 	let gridHelper = new THREE.GridHelper(500, 500, 0xffffff);
 			// 	gridHelper.position.set(0, 0, 0);
-			// 	this.canvas.add(gridHelper);
+			// 	this.scene.add(gridHelper);
 			// }
 
 			// Animate
@@ -140,7 +140,7 @@ export default {
 			this.cube.rotation.x -= 0.01;
 			this.cube.rotation.z -= 0.01;
 
-			this.renderer.render(this.canvas, this.perspectiveCamera);
+			this.renderer.render(this.scene, this.perspectiveCamera);
 
 		},
 
