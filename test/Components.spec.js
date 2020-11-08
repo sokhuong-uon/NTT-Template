@@ -1,5 +1,3 @@
-import { mount, shallowMount } from '@vue/test-utils';
-
 import PopUp from '@/components/PopUp.vue';
 import Scene from '@/components/Scene.vue';
 
