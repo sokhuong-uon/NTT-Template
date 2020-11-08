@@ -11,7 +11,7 @@
 import vClickOutside from 'v-click-outside';
 
 import * as THREE from 'three';
-import {OrbitControls} from '~/node_modules/three/examples/jsm/controls/OrbitControls.js';
+const OrbitControls = require('three-orbit-controls')(THREE);
 
 export default {
 
