@@ -14,7 +14,6 @@
 		"lint:css": "",
 		"lint:prettier": ""
 	},
-
 	"dependencies": {
 		"@nuxtjs/axios": "^5.12.2",
 		"@nuxtjs/pwa": "^3.0.2",
@@ -23,10 +22,10 @@
 		"nuxt-compress": "^4.0.0",
 		"nuxt-gsap-module": "^1.0.1",
 		"three": "^0.122.0",
+		"three-orbit-controls": "^82.1.0",
 		"v-click-outside": "^3.1.2",
 		"vue-tippy": "^4.7.2"
 	},
-
 	"devDependencies": {
 		"@nuxtjs/tailwindcss": "^3.1.0",
 		"@vue/test-utils": "^1.1.0",
